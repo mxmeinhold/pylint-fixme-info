@@ -1,0 +1,5 @@
+pylint
+pylint_quotes
+setuptools>=42
+twine
+wheel

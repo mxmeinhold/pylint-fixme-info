@@ -1,0 +1,4 @@
+# Build and publish directories
+build/
+dist/
+*.egg-info/
