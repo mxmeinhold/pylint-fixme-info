@@ -17,7 +17,7 @@ setuptools.setup(
         'pylint>=1.7.6',
     ],
     packages=["pylint_fixme_info"],
-    python_requires=">=3.4",
+    python_requires=">=3.7",
     project_urls={
         "Bug Tracker": "https://github.com/mxmeinhold/pylint-fixme-info/issues",
     },
