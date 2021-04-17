@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="pylint-fixme-info",
-    version="1.0.1",
+    version="1.0.2",
     author="Max Meinhold",
     author_email="mxmeinhold@gmail.com",
     description="A pylint checker for reporting fixmes with Info level",
