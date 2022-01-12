@@ -4,8 +4,7 @@ import re
 import tokenize
 
 from pylint.checkers import BaseChecker
-from pylint.interfaces import IRawChecker, ITokenChecker
-from pylint.message import MessagesHandlerMixIn
+from pylint.interfaces import ITokenChecker
 from pylint.utils.pragma_parser import OPTION_PO, PragmaParserError, parse_pragma
 
 class FixmeChecker(BaseChecker):

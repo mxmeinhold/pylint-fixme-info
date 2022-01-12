@@ -14,7 +14,7 @@ setuptools.setup(
     license='MIT',
     url="https://github.com/mxmeinhold/pylint-fixme-info",
     install_requires=[
-        'pylint>=1.7.6',
+        'pylint>=2.5.0',
     ],
     packages=["pylint_fixme_info"],
     python_requires=">=3.7",
