@@ -2,7 +2,10 @@
 persistent = yes
 # pylint_quotes currently does not support pylint 3
 # load-plugins = pylint_quotes
+load-plugins = pylint_fixme_info
 
 [FORMAT]
 output-format = colorized
 
+[MESSAGES CONTROL]
+disable = fixme
