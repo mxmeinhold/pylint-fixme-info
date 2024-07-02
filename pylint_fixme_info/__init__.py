@@ -3,14 +3,12 @@
 import re
 import tokenize
 
-from pylint.checkers import BaseChecker
-from pylint.interfaces import ITokenChecker
+from pylint.checkers import BaseTokenChecker
 from pylint.utils.pragma_parser import OPTION_PO, PragmaParserError, parse_pragma
 
-class FixmeChecker(BaseChecker):
+class FixmeChecker(BaseTokenChecker):
     """Checks for fixmes"""
 
-    __implements__ = ITokenChecker
     _fixme_pattern: re.Pattern
 
     name = 'fixme-info'
@@ -40,6 +38,7 @@ class FixmeChecker(BaseChecker):
             {
                 'type': 'string',
                 'metavar': '<regexp>',
+                'default': '',
                 'help': 'Regular expression of note tags to take in consideration.',
             },
         ),
@@ -48,9 +47,9 @@ class FixmeChecker(BaseChecker):
     def open(self):
         super().open()
 
-        notes = '|'.join(map(re.escape, self.config.notes_info))
-        if self.config.notes_info_rgx:
-            regex_string = fr'#\s*({notes}|{self.config.notes_info_rgx})\b'
+        notes = '|'.join(map(re.escape, self.linter.config.notes_info))
+        if self.linter.config.notes_info_rgx:
+            regex_string = fr'#\s*({notes}|{self.linter.config.notes_info_rgx})\b'
         else:
             regex_string = fr'#\s*({notes})\b'
 
@@ -58,7 +57,7 @@ class FixmeChecker(BaseChecker):
 
     def process_tokens(self, tokens):
         """inspect the source to find fixme problems"""
-        if not self.config.notes_info:
+        if not self.linter.config.notes_info:
             return
         comments = (
             token_info for token_info in tokens if token_info.type == tokenize.COMMENT
@@ -82,7 +81,7 @@ class FixmeChecker(BaseChecker):
                         # Printing useful information dealing with this error
                         # is done in the lint package
                         pass
-                    if set(values) & set(self.config.notes_info):
+                    if set(values) & set(self.linter.config.notes_info):
                         continue
                 except ValueError:
                     self.add_message(
